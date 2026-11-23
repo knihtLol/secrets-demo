@@ -16,7 +16,7 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="gemini-2.5-flash",
+    model="gemini-3.7-flash",
     messages=[
         {"role": "user", "content": "In one sentence, why should API keys never be committed to git?"}
     ],
