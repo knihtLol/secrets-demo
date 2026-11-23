@@ -1,0 +1,29 @@
+name: Call model with a secret
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  ask:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install SDK
+        run: pip install openai
+
+      - name: Show that GitHub masks the secret
+        run: echo "My key is $GEMINI_API_KEY"
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Call the model
+        run: python ask.py
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
