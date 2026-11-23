@@ -13,10 +13,12 @@ if not key:
 client = OpenAI(
     api_key=key,
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
+    timeout=30,
+    max_retries=1,
 )
 
 response = client.chat.completions.create(
-    model="gemini-3.7-flash",
+    model="gemini-3.5-flash-lite",
     messages=[
         {"role": "user", "content": "In one sentence, why should API keys never be committed to git?"}
     ],
